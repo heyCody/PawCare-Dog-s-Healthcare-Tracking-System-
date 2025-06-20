@@ -1,5 +1,5 @@
 <h1>🐶 Dog Health Tracking System</h1>
-An intelligent health tracking system for dogs that allows pet owners to monitor symptoms, track vaccinations, detect emotional states through images, and get timely alerts and disease predictions. Built using Flask, PostgreSQL, and Machine Learning.<br>
+An intelligent health tracking system for dogs that allows pet owners to monitor symptoms, track vaccinations, detect emotional states through images, and get timely alerts and disease predictions. Built using Flask, PostgreSQL, and Machine Learning.<br><br>
 
 <b>📋 Features</b><br>
 🩺 Symptom-Based Disease Prediction using Decision Tree model<br>
