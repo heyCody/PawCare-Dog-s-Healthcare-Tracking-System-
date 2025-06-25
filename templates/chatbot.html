@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="chatbot-button">💬</div>
+
+<!-- Popup Chat Container -->
+<div id="chatbot-popup">
+    <div id="chatbot-header">
+        PawCare Bot
+        <span id="close-btn">&times;</span>
+    </div>
+    <div id="chatbox"></div>
+    <input type="file" id="file-input" accept="image/*">
+</div>
+
+<!-- <audio id="chat-sound" src="{{ url_for('static', filename='sounds/chat-open.mp3') }}" preload="auto"></audio> -->
+
+<script>
+  const chatbotBtn = document.getElementById('chatbot-button');
+  const chatbotPopup = document.getElementById('chatbot-popup');
+  const closeBtn = document.getElementById('close-btn');
+  const chatSound = document.getElementById('chat-sound');
+
+  let chatbotOpened = false;
+
+  // function openChatbot() {
+  //   chatSound.play();
+  //   document.getElementById('chatbox').innerHTML = '';
+  //   document.getElementById('file-input').value = '';
+  //   selectedSymptoms.length = 0;
+  //   optionsShown = false;
+  //   chatbotPopup.style.display = 'block';
+  //   chatbotBtn.style.display = 'none';
+
+  //   setTimeout(() => {
+  //     botTypingMessage("Hi, how may I assist you today?", 1000, showInitialOptions);
+  //   }, 500);
+
+  //   chatbotOpened = true;
+  // }
+
+  chatbotBtn.onclick = () => openChatbot();
+  closeBtn.onclick = () => {
+    chatbotPopup.style.display = 'none';
+    chatbotBtn.style.display = 'block';
+  };
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      if (!chatbotOpened) openChatbot();
+    }, 10000);
+  });
+</script>
+{% endblock %}

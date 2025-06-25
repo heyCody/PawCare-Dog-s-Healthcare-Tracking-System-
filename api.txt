@@ -1,0 +1,56 @@
+https://maps.googleapis.com/maps/api/js?key=AIzaSyD6XXfVbg6GhCuT4YOA1ckn_CB-8jvAtT4&libraries=places
+
+
+AIzaSyCltxHv95W_StASykGfOM2Z1pJlpbA9MAM
+
+PnSa_BQVnfpOXGyrK5e0TOxAgyw=
+
+
+AIzaSyCgSwp0HL2gf23IfqoDhj3xLJM_Sa2PLO0
+
+
+
+if record and record.is_valid():
+            # Check if user already exists (shouldn't happen but safety check)
+            if User.query.filter_by(email=temp_user['email']).first():
+                flash("This email is already registered. Please log in.", 'info')
+                return redirect(url_for('login'))
+
+            try:
+                # Create username from email
+                username = temp_user['email'].split('@')[0]
+                
+                # Ensure username is unique
+                counter = 1
+                base_username = username
+                while User.query.filter_by(username=username).first():
+                    username = f"{base_username}{counter}"
+                    counter += 1
+
+                # Create new user
+                new_user = User(
+                    name=temp_user['name'],
+                    email=temp_user['email'],
+                    username=username,
+                    password=temp_user['password'],
+                    is_email_verified=True
+                )
+                
+                db.session.add(new_user)
+                db.session.commit()
+                
+                # CLEAR SESSION BEFORE REDIRECT (CRITICAL FIX)
+                session.pop('temp_user', None)
+                
+                # Delete used OTP
+                EmailOTP.query.filter_by(email=temp_user['email']).delete()
+                db.session.commit()
+                
+                # Redirect to login with success message
+                flash("✅ Email verified and account created successfully! Please log in.", 'success')
+                return redirect(url_for('login'))  # Fixed redirect target
+                
+            except Exception as e:
+                db.session.rollback()
+                print(f"❌ Error creating user: {e}")
+                flash("There was an error creating your account. Please try again.", 'danger')

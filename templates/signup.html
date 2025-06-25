@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container vh-100 d-flex justify-content-center align-items-center bg-light">
+    <div class="card p-4 shadow" style="max-width: 1000px; width: 100%;">
+        <div class="text-center mb-4">
+            <h4><i class="fas fa-user-plus me-2"></i> Create Your Account</h4>
+            <p class="text-muted small">Register to access personalized veterinary services</p>
+        </div>
+
+        <form method="POST" id="signupForm">
+            {{ form.hidden_tag() }}
+            <div class="row g-4">
+                <!-- Owner Details -->
+                <div class="col-md-6">
+                    <h6 class="mb-3 border-bottom pb-1"><i class="fas fa-user me-2 text-primary"></i>Owner Details</h6>
+
+                    <div class="mb-3">
+                        {{ form.name.label(class="form-label") }}
+                        {{ form.name(class="form-control", placeholder="Full Name") }}
+                        {% for error in form.name.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.email.label(class="form-label") }}
+                        {{ form.email(class="form-control", placeholder="your@email.com") }}
+                        {% for error in form.email.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.mobile.label(class="form-label") }}
+                        {{ form.mobile(class="form-control", placeholder="10-digit mobile number") }}
+                        {% for error in form.mobile.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.password.label(class="form-label") }}
+                        {{ form.password(class="form-control", placeholder="••••••••") }}
+                        {% for error in form.password.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.confirm_password.label(class="form-label") }}
+                        {{ form.confirm_password(class="form-control", placeholder="••••••••") }}
+                        {% for error in form.confirm_password.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Dog Details -->
+                <div class="col-md-6">
+                    <h6 class="mb-3 border-bottom pb-1"><i class="fas fa-dog me-2 text-warning"></i>Dog's Info</h6>
+
+                    <div class="mb-3">
+                        {{ form.dog_name.label(class="form-label") }}
+                        {{ form.dog_name(class="form-control", placeholder="Dog's Name") }}
+                        {% for error in form.dog_name.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.dog_dob.label(class="form-label") }}
+                        {{ form.dog_dob(class="form-control") }}
+                        {% for error in form.dog_dob.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.weight.label(class="form-label") }}
+                        {{ form.weight(class="form-control", placeholder="e.g. 12.5") }}
+                        {% for error in form.weight.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.breed.label(class="form-label") }}
+                        {{ form.breed(class="form-select") }}
+                        {% for error in form.breed.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid mt-4">
+                {{ form.submit(class="btn btn-primary btn-lg") }}
+            </div>
+
+            <div class="text-center mt-3">
+                <small class="text-muted">Already have an account? <a href="{{ url_for('login') }}">Login</a></small>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const today = new Date().toISOString().split('T')[0];
+    document.querySelector('[name="dog_dob"]').setAttribute('max', today);
+</script>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Dog Vaccine Dashboard{% endblock %}
+
+{% block head %}
+<!-- Optional: Tailwind if still needed -->
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f0f4f8;
+    }
+    .container-card {
+        background-color: #ffffff;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 900px;
+        border: 1px solid #e2e8f0;
+    }
+    th {
+        text-align: left;
+        padding: 0.75rem 1rem;
+        background-color: #edf2f7;
+        font-weight: 600;
+        color: #4a5568;
+    }
+    td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #e2e8f0;
+        color: #4a5568;
+    }
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-card mx-auto mt-4">
+    <h1 class="text-4xl font-extrabold text-center mb-8">🐶 Dog Vaccine Dashboard 💉</h1>
+
+    <!-- Dog Info -->
+    <div class="bg-blue-50 p-6 rounded-lg mb-8 border border-blue-200 shadow-sm">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4">Dog Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
+            <p><strong class="text-blue-700">Name:</strong> <span id="dogName" class="text-gray-800 font-semibold">Loading...</span></p>
+            <p><strong class="text-blue-700">Date of Birth:</strong> <span id="dogDOB" class="text-gray-800 font-semibold">Loading...</span></p>
+        </div>
+    </div>
+
+    <!-- Upcoming Vaccines -->
+    <div class="bg-green-50 p-6 rounded-lg mb-8 border border-green-200 shadow-sm">
+        <h2 class="text-2xl font-bold text-green-800 mb-4">Upcoming Vaccine Schedule</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white rounded-lg shadow overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Vaccine</th>
+                        <th>Due Date</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleTableBody">
+                    <tr><td colspan="3" class="text-center py-4 text-gray-500">Loading schedule...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Vaccine History -->
+    <div class="bg-purple-50 p-6 rounded-lg border border-purple-200 shadow-sm">
+        <h2 class="text-2xl font-bold text-purple-800 mb-4">Vaccination History</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white rounded-lg shadow overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Vaccine</th>
+                        <th>Date Given</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    <tr><td colspan="2" class="text-center py-4 text-gray-500">No vaccination history recorded.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/vaccine.js') }}"></script>
+{% endblock %}

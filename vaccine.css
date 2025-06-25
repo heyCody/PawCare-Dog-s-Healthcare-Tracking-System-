@@ -1,0 +1,70 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6fa;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 480px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 32px 24px 24px 24px;
+  }
+  h2 {
+    margin-top: 0;
+    color: #2d3a4b;
+    letter-spacing: 0.5px;
+  }
+  #vaccination-due-section {
+    margin-top: 18px;
+  }
+  #vaccination-due-section h3 {
+    margin: 0 0 10px 0;
+    color: #b71c1c;
+    font-size: 1.15em;
+    font-weight: 600;
+  }
+  #due-vaccination-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  #due-vaccination-list li {
+    background: #ffe0e0;
+    margin-bottom: 8px;
+    padding: 10px 14px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #b71c1c;
+    font-weight: 500;
+    font-size: 1em;
+    box-shadow: 0 1px 2px rgba(183,28,28,0.04);
+  }
+  #due-vaccination-list li span.due-date {
+    color: #888;
+    font-size: 0.97em;
+    font-weight: 400;
+  }
+  #due-vaccination-list li.ok {
+    background: #e0f7fa;
+    color: #00695c;
+  }
+  .reload-btn {
+    margin-top: 18px;
+    background: #b71c1c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .reload-btn:hover {
+    background: #8a1616;
+  }
